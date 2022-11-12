@@ -1,33 +1,54 @@
 import { useState } from "react";
 
+import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+
 const defaultFormField = {
-    username : '',
+    displayName : '',
     email : '',
     password : '',
     confirmPassword : ''
 };
 
 const SignUpForm = () => {
-    const {formField, setFormField} = useState(defaultFormField);
-    const {username, email, password, confirmPassword} = formField;
+    const [formField, setFormField] = useState(defaultFormField);
+    const {displayName, email, password, confirmPassword} = formField;
+
+    //console.log(formField);
+
+    const handleSubmit = async (event)=>{
+        event.preventDefault();
+        if(password !== confirmPassword){
+            alert("password do not match");
+            return ;
+        }
+        try{
+            const {user} = await createUserAuthWithEmailAndPassword(email, password);
+            await createUserDocumentFromAuth(user, {displayName });
+        }
+        catch (error){
+            if(error.code === 'auth/email-already-in-use'){
+                alert('Cannot create user that already exist');
+            }
+            console.log("user creation encountered an error", error);
+        }
+    };
 
     const handleChange = (event)=>{
         const {name, value} = event.target;
         setFormField({...formField, [name]: value});
-        console.log(formField);
     };
 
     return(
         <div>
             <h2>Sign Up with your details</h2>
-            <form onSubmit={()=> {}}>
-                <label>Username</label>
+            <form onSubmit={handleSubmit}>
+                <label>Display Name</label>
                 <input 
                     type='text' 
                     required 
                     onChange={handleChange} 
-                    name='username' 
-                    value={username} 
+                    name='displayName' 
+                    value={displayName} 
                 />
 
                 <label>Email</label>

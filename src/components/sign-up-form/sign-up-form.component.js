@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-import { createUserAuthWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+import { auth, createUserAuthWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
+import FormInput from '../form-input/form-input.component';
+import Button from '../button/button.component';
+
+import './sign-up-form.styles.scss';
 
 const defaultFormField = {
     displayName : '',
@@ -14,6 +18,9 @@ const SignUpForm = () => {
     const {displayName, email, password, confirmPassword} = formField;
 
     //console.log(formField);
+    const resetFormField = () => {
+        setFormField(defaultFormField);
+    }
 
     const handleSubmit = async (event)=>{
         event.preventDefault();
@@ -24,6 +31,7 @@ const SignUpForm = () => {
         try{
             const {user} = await createUserAuthWithEmailAndPassword(email, password);
             await createUserDocumentFromAuth(user, {displayName });
+            resetFormField();
         }
         catch (error){
             if(error.code === 'auth/email-already-in-use'){
@@ -39,11 +47,12 @@ const SignUpForm = () => {
     };
 
     return(
-        <div>
-            <h2>Sign Up with your details</h2>
+        <div className="sign-up-container">
+            <h2>Don't have an account</h2>
+            <span>Sign Up with your email and password</span>
             <form onSubmit={handleSubmit}>
-                <label>Display Name</label>
-                <input 
+                <FormInput 
+                    label = 'Display Name'
                     type='text' 
                     required 
                     onChange={handleChange} 
@@ -51,8 +60,8 @@ const SignUpForm = () => {
                     value={displayName} 
                 />
 
-                <label>Email</label>
-                <input 
+                <FormInput 
+                    label = 'Email'
                     type='email' 
                     required 
                     onChange={handleChange} 
@@ -60,8 +69,8 @@ const SignUpForm = () => {
                     value={email} 
                 />
 
-                <label>Password</label>
-                <input 
+                <FormInput 
+                    label = 'Password'
                     type='password' 
                     required 
                     onChange={handleChange} 
@@ -69,8 +78,8 @@ const SignUpForm = () => {
                     value={password} 
                 />
 
-                <label>Confirm Password</label>
-                <input 
+                <FormInput 
+                    label = 'Confirm Password'
                     type='password' 
                     required 
                     onChange={handleChange} 
@@ -78,10 +87,12 @@ const SignUpForm = () => {
                     value={confirmPassword} 
                 /> 
 
-                <button type="submit">Sign Up</button>
+                <Button  type="submit">Sign Up</Button>
             </form>
         </div>
     )
 }
+
+// buttonType ="google"
 
 export default SignUpForm;

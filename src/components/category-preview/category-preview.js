@@ -1,6 +1,7 @@
 import './category-preview.styles.scss';
 
 import { Fragment } from "react";
+import { Link } from 'react-router-dom';
 //import { useNavigate } from 'react-router-dom';
 import ProductCard from "../../components/product/productCard.component";
 
@@ -9,7 +10,7 @@ const CategoryPreview = ({title, products}) => {
         <div className='category-preview-container'>
             <Fragment key={title}>
                 <h2>
-                    <span className='title' >{title.toUpperCase()}</span>
+                    <Link className='title' to={title}>{title.toUpperCase()}</Link>
                 </h2>
                 <div className="preview">
                     {

@@ -24,18 +24,6 @@ const SignInForm = () => {
         setSignInDetail(defaultSignInDetail);
     }
 
-    // useEffect( () => {
-    //     async function check(params) {
-    //         const response = await getRedirectResult(auth);
-    //         console.log(response);
-    //     }
-    //     check();
-    // }, [])
-    // const signInWithGoogleByRedirect = async () => {
-    //     const {user} = await signInWithGoogleRedirect();
-    //     await createUserDocumentFromAuth(user);
-    // }
-
     const handleSubmit = async (event)=>{
         event.preventDefault();
         try{

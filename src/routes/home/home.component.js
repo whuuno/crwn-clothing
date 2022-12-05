@@ -1,7 +1,7 @@
-import Directory from '../../components/categories-directory/directory.component';
+import Directory from '../../components/directory/directory.component';
 
 const Home = () => {
-  const categories = [
+  const directories = [
     {
       "id": 1,
       "title": 'Hats',
@@ -30,7 +30,7 @@ const Home = () => {
   ]
 
   return (
-    <Directory categories = {categories}/>
+    <Directory directories = {directories}/>
   );
 }
 

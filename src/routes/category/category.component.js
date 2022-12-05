@@ -10,7 +10,10 @@ import ProductCard from '../../components/product/productCard.component';
 const Category = () => {
     const { category } = useParams();
     const { categoriesMap } = useContext(CategoriesContext);
-    const [products, setProducts] = useState([]);
+
+    const defaultProducts = (categoriesMap.length > 0 ? categoriesMap : []);
+
+    const [products, setProducts] = useState(defaultProducts);
 
     useEffect(() => {
         setProducts(categoriesMap[category]);

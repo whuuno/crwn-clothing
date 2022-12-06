@@ -1,11 +1,11 @@
-import './category.styles.scss';
+import { CategoryTitle, CategoryContainer} from './category.styles.jsx';
 
 import { Fragment, useContext, useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
 import { CategoriesContext } from '../../contexts/categories-context';
-import ProductCard from '../../components/product/productCard.component';
+import ProductCard from '../../components/product-card/productCard.component';
 
 const Category = () => {
     const { category } = useParams();
@@ -21,10 +21,10 @@ const Category = () => {
 
     return(
         <Fragment>
-            <h2 className='category-title'>
+            <CategoryTitle>
                 {category.toUpperCase()}
-            </h2>
-            <div className='category-container'>    
+            </CategoryTitle>
+            <CategoryContainer>    
                 {products &&
                     products.map(product => {
                         return (
@@ -32,7 +32,7 @@ const Category = () => {
                         )
                     })
                 }
-            </div>
+            </CategoryContainer>
         </Fragment>
     )
 }

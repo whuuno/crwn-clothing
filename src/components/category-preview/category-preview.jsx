@@ -1,17 +1,16 @@
-import './category-preview.styles.scss';
+import { CategoryPreviewContainer, Preview, Title} from './category-preview.styles.jsx';
 
 import { Fragment } from "react";
-import { Link } from 'react-router-dom';
-import ProductCard from "../../components/product/productCard.component";
+import ProductCard from "../product-card/productCard.component";
 
 const CategoryPreview = ({title, products}) => {
     return (
-        <div className='category-preview-container'>
+        <CategoryPreviewContainer>
             <Fragment key={title}>
                 <h2>
-                    <Link className='title' to={title}>{title.toUpperCase()}</Link>
+                    <Title to={title}>{title.toUpperCase()}</Title>
                 </h2>
-                <div className="preview">
+                <Preview>
                     {
                         products
                         .filter((_, idx) => idx < 4)
@@ -21,9 +20,9 @@ const CategoryPreview = ({title, products}) => {
                             )
                         })
                     }
-                </div>
+                </Preview>
             </Fragment>
-        </div>
+        </CategoryPreviewContainer>
     )
 }
 

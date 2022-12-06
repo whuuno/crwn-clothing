@@ -2,7 +2,6 @@ import './category-preview.styles.scss';
 
 import { Fragment } from "react";
 import { Link } from 'react-router-dom';
-//import { useNavigate } from 'react-router-dom';
 import ProductCard from "../../components/product/productCard.component";
 
 const CategoryPreview = ({title, products}) => {

@@ -3,7 +3,12 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cart-context";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 
-import { CheckoutContainer, CheckoutHeader, HeaderBlock, Total} from './checkout.styles.jsx';
+import { 
+    CheckoutContainer, 
+    CheckoutHeader, 
+    HeaderBlock, 
+    Total
+} from './checkout.styles.jsx';
 
 const Checkout = () => {
     const { cartItems, cartTotal } = useContext(CartContext);
@@ -12,19 +17,19 @@ const Checkout = () => {
         <CheckoutContainer>
             <CheckoutHeader>
                 <HeaderBlock>
-                    Item
+                    <span>Item</span>
                 </HeaderBlock>
                 <HeaderBlock>
-                    Description
+                    <span>Description</span>
                 </HeaderBlock>
                 <HeaderBlock>
-                    Price
+                    <span>Quantity</span>
                 </HeaderBlock>
                 <HeaderBlock>
-                    Quantity
+                    <span>Price</span>
                 </HeaderBlock>
                 <HeaderBlock>
-                    Remove
+                    <span>Remove</span>
                 </HeaderBlock>
             </CheckoutHeader>
             {
@@ -36,7 +41,7 @@ const Checkout = () => {
             }
             <Total>Total : {cartTotal}</Total>
         </CheckoutContainer>
-    )    
-}
+    )   ; 
+};
 
 export default Checkout;

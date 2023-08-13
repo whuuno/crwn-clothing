@@ -18,6 +18,7 @@ import {setCurrentUser} from './store/user/user.action'
 const App = () => {
 
   const dispatch = useDispatch();
+
   useEffect(()=>{
     const unsubscribe = onAuthStateChangeListener((user)=>{
         if(user){
@@ -28,7 +29,7 @@ const App = () => {
 
     signOutUser();
     return unsubscribe;
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>

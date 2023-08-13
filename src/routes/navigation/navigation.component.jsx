@@ -12,8 +12,10 @@ import { CartContext } from '../../contexts/cart-context';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
 import { NavigationContainer, LogoContainer, NavLinks, NavLink } from './navigation.styles.jsx';
 
+import { selectCurrentUser } from '../../store/user/user.selector';
+
 const Navigation = () => {
-    const currentUser = useSelector(state => state.user.currentUser);
+    const currentUser = useSelector(selectCurrentUser);
     const { isCartOpen } = useContext(CartContext);
 
     return (

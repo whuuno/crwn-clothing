@@ -4,12 +4,14 @@ import { Fragment, useContext, useEffect, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { CategoriesContext } from '../../contexts/categories-context';
+import { useSelector} from 'react-redux';
+
 import ProductCard from '../../components/product-card/productCard.component';
+import { selectCategoriesMap } from '../../store/category/category.selector.js';
 
 const Category = () => {
     const { category } = useParams();
-    const { categoriesMap } = useContext(CategoriesContext);
+    const categoriesMap = useSelector(selectCategoriesMap);
 
     const defaultProducts = (categoriesMap.length > 0 ? categoriesMap : []);
 

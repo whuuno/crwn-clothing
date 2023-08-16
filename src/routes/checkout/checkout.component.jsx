@@ -41,7 +41,7 @@ const Checkout = () => {
                     )
                 })
             }
-            <Total>Total : {cartTotal}</Total>
+            <Total>Total : ${cartTotal}</Total>
         </CheckoutContainer>
     )   ; 
 };
